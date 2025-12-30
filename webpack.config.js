@@ -7,7 +7,7 @@ module.exports = {
   optimization: {
     minimizer: [new TerserPlugin({ extractComments: false })],
   },
-  mode: "production",
+  mode: "development",
   entry: {
     BuzzFeedQuiz: "./src/BuzzFeedQuiz.tsx",
     index: "./src/index.ts",

@@ -7,7 +7,7 @@
   "private": false,
   "dependencies": {
     "react-icons": "^4.3.1",
-    "react-resize-detector": "^7.0.0",
+    "react-resize-detector": "^9.1.0",
     "react-scroll": "^1.8.5"
   },
   "peerDependencies": {
@@ -28,8 +28,6 @@
     "css-loader": "^6.6.0",
     "fork-ts-checker-webpack-plugin": "^7.2.1",
     "mini-css-extract-plugin": "^2.5.3",
-    "react": ">=15.0.1",
-    "react-dom": ">=15.0.1",
     "sass": "^1.49.8",
     "sass-loader": "^12.6.0",
     "terser-webpack-plugin": "^5.3.1",
