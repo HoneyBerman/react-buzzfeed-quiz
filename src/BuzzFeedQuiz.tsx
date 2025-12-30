@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC, createContext, Dispatch } from "react";
+import React, { useState, useEffect, FC, createContext, Dispatch, useCallback } from "react";
 import { scroller, Element } from "react-scroll";
 import Byline from "./components/Byline";
 import Question from "./components/Question";
@@ -56,7 +56,7 @@ const BuzzFeedQuiz: FC<BuzzFeedQuizProps> = (props) => {
   const [shareLinkClicked, changeShareLinkClicked] = useState(false);
   const [shareLinkAnimatingOut, changeShareLinkAnimatingOut] = useState(false);
 
-  const scrollFunction = (element: string, questionIndex: number) => {
+  const scrollFunction = useCallback((element: string, questionIndex: number) => {
     const scrollToRes = () => {
       setTimeout(() => {
         scroller.scrollTo("Result", {
@@ -111,7 +111,7 @@ const BuzzFeedQuiz: FC<BuzzFeedQuizProps> = (props) => {
         }
       }
     }
-  };
+  }, [autoScroll]);
 
   useEffect(() => {
     if (
