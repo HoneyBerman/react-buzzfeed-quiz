@@ -29,7 +29,8 @@ const Question: FC<QuestionProps> = memo(
       image: "",
       imageAttribution: "",
     });
-    const { height, width, ref: resizeRef } = useResizeDetector();
+    const { width, ref: resizeRef } = useResizeDetector({ handleHeight: false });
+    const height = 400; // fixed height to prevent resize loops
 
     const renderOverlapText = (item: QuestionType) => {
       if (item.questionRelativeToImage !== "adjacent") {
