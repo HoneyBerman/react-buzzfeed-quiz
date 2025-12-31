@@ -20,6 +20,31 @@ import { BuzzFeedQuiz } from "react-buzzfeed-quiz";
 import "react-buzzfeed-quiz/lib/styles.css";
 import "./App.css";
 
+const renderCustomRocketGradient = () => {
+  return (
+    <>
+      <svg width="0" height="0">
+        <linearGradient
+          id="rocket-gradient"
+          x1="100%"
+          y1="100%"
+          x2="0%"
+          y2="0%"
+        >
+          <stop stopColor="rgb(0,80,58)" offset="0%" />
+          <stop stopColor="rgb(2,207,158)" offset="100%" />
+        </linearGradient>
+      </svg>
+      <IoRocketSharp
+        style={{
+          fill: "url(#rocket-gradient)",
+        }}
+        size={28}
+      />
+    </>
+  );
+};
+
 const questions = [
   {
     question: "Here's a default question",
@@ -242,31 +267,6 @@ const App = () => {
       changeFontsLoaded(true);
     });
   }, []);
-
-  const renderCustomRocketGradient = () => {
-    return (
-      <>
-        <svg width="0" height="0">
-          <linearGradient
-            id="rocket-gradient"
-            x1="100%"
-            y1="100%"
-            x2="0%"
-            y2="0%"
-          >
-            <stop stopColor="rgb(0,80,58)" offset="0%" />
-            <stop stopColor="rgb(2,207,158)" offset="100%" />
-          </linearGradient>
-        </svg>
-        <IoRocketSharp
-          style={{
-            fill: "url(#rocket-gradient)",
-          }}
-          size={28}
-        />
-      </>
-    );
-  };
 
   if (fontsLoaded) {
     return (
