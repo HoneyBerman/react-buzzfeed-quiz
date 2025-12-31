@@ -21,17 +21,13 @@ import "react-buzzfeed-quiz/lib/styles.css";
 import "./App.css";
 
 const App = () => {
-  const [fontsLoaded, changeFontsLoaded] = useState(false);
-
-  useEffect(() => {
-    changeFontsLoaded(false);
-  }, [changeFontsLoaded]);
+  const [fontsLoaded, changeFontsLoaded] = useState(true);
 
   useEffect(() => {
     document.fonts.ready.then(() => {
       changeFontsLoaded(true);
     });
-  }, [changeFontsLoaded]);
+  }, []);
 
   const renderCustomRocketGradient = () => {
     return (
