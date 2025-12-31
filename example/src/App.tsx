@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import ProfilePhoto from "./assets/images/ProfilePhoto.jpg";
 import StockCatPhoto from "./assets/images/StockCatPhoto.jpg";
@@ -20,253 +21,43 @@ import { BuzzFeedQuiz } from "react-buzzfeed-quiz";
 import "react-buzzfeed-quiz/lib/styles.css";
 import "./App.css";
 
-const renderCustomRocketGradient = () => {
-  return (
-    <>
-      <svg width="0" height="0">
-        <linearGradient
-          id="rocket-gradient"
-          x1="100%"
-          y1="100%"
-          x2="0%"
-          y2="0%"
-        >
-          <stop stopColor="rgb(0,80,58)" offset="0%" />
-          <stop stopColor="rgb(2,207,158)" offset="100%" />
-        </linearGradient>
-      </svg>
-      <IoRocketSharp
-        style={{
-          fill: "url(#rocket-gradient)",
-        }}
-        size={28}
-      />
-    </>
-  );
-};
-
-const questions = [
-  {
-    question: "Here's a default question",
-    answers: [
-      {
-        answer: "Backgrounds are black",
-        resultID: 0,
-      },
-      {
-        answer: "Fonts are white",
-        resultID: 0,
-      },
-      {
-        answer: "arranged",
-        resultID: 1,
-      },
-      {
-        answer: "in a",
-        resultID: 1,
-      },
-      {
-        answer: "column",
-        resultID: 2,
-      },
-      {
-        answer: "by",
-        resultID: 2,
-      },
-      {
-        answer: "default",
-        resultID: 2,
-      },
-    ],
-  },
-  {
-    question: "Here is some overlapping image text",
-    questionRelativeToImage: "overlap",
-    answerArrangement: "tile",
-    backgroundImageSrc: CalmSkyPhoto,
-    imageAttribution: "Photo by Maria Orlova from Pexels",
-    answers: [
-      {
-        answer: "Here's a cat photo",
-        resultID: 0,
-        backgroundImageSrc: StockCatPhoto,
-        imageAttribution: "Photo by Pixabay from Pexels",
-      },
-      {
-        answer: "No cat photo here, though",
-        resultID: 0,
-        backgroundColor: "rgb(238,243,247)",
-        fontColor: "rgb(53,51,48)",
-      },
-      {
-        answer: "These",
-        resultID: 1,
-        backgroundColor: "rgb(238,243,247)",
-        fontColor: "rgb(53,51,48)",
-      },
-      {
-        answer: "answers",
-        resultID: 1,
-        backgroundColor: "rgb(238,243,247)",
-        fontColor: "rgb(53,51,48)",
-      },
-      {
-        answer: "are",
-        resultID: 2,
-        backgroundColor: "rgb(238,243,247)",
-        fontColor: "rgb(53,51,48)",
-      },
-      {
-        answer: "all",
-        resultID: 2,
-        backgroundColor: "rgb(238,243,247)",
-        fontColor: "rgb(53,51,48)",
-      },
-      {
-        answer: "tiled",
-        resultID: 2,
-        backgroundColor: "rgb(238,243,247)",
-        fontColor: "rgb(53,51,48)",
-      },
-      {
-        answer: "Click here to trigger an answer response!",
-        resultID: 1,
-        backgroundColor: "rgb(238,243,247)",
-        fontColor: "rgb(53,51,48)",
-        revealResponse: {
-          title: (
-            <>
-              <h3 className="rbq_question_response_title">
-                {renderCustomRocketGradient()}
-                Here's an answer response!
-              </h3>
-            </>
-          ),
-          description:
-            "Trigger your own answer response by setting an answer's revealResponse key. You can set a title and description value (either of which can be a string or a JSX element). You can also set an image and an image attribution statement.",
-          image: GreenEyedCat,
-          imageAttribution: "Via Pexels",
-        },
-      },
-    ],
-  },
-  {
-    question: "Here is some adjacent image text",
-    questionRelativeToImage: "adjacent",
-    imageAttribution: "Photo by Anel Rossouw from Pexels",
-    answerArrangement: "row",
-    backgroundImageSrc: AdditionalCatPhoto,
-    answers: [
-      {
-        answer: "These",
-        resultID: 0,
-      },
-      {
-        answer: "answers",
-        resultID: 0,
-      },
-      {
-        answer: "are in a",
-        resultID: 1,
-      },
-      {
-        answer: "row",
-        resultID: 1,
-      },
-      {
-        answer: "configuration.",
-        resultID: 2,
-      },
-    ],
-  },
-  {
-    question: "Answers can also trigger a callback function",
-    answers: [
-      {
-        answer: "Cb ➡️",
-        resultID: 0,
-      },
-      {
-        answer: "Click for answer function",
-        onAnswerSelection: (questionIndex: number, answerIndex: number, resultID: number) =>
-          alert(
-            `This alert is caused by an answer selection!\n\nThe onAnswerSelection prop takes an optional callback function with the question's index, selected answer index, and associated result ID as parameters.\n\nCheck out the console to see these parameters in action!\n\n*** Keep in mind that the onAnswerSelection prop on specific answers supersedes ReactBuzzFeedQuiz's general onAnswerSelection prop, so the parameters for this particular question selection won't show up in the console but here instead:\n\n{questionIndex: ${questionIndex}, answerIndex: ${answerIndex}, resultID: ${resultID}}`
-          ),
-        resultID: 1,
-      },
-      {
-        answer: "⬅️ Cb",
-        resultID: 2,
-      },
-    ],
-  },
-  {
-    question:
-      "Select a final answer to trigger a result callback function",
-    answers: [
-      {
-        answer: "Thanks",
-        resultID: 0,
-      },
-      {
-        answer: "for",
-        resultID: 0,
-      },
-      {
-        answer: "checking",
-        resultID: 1,
-      },
-      {
-        answer: "the",
-        resultID: 1,
-      },
-      {
-        answer: "demo",
-        resultID: 2,
-      },
-      {
-        answer: "out!",
-        resultID: 2,
-      },
-    ],
-  },
-];
-
-const results = [
-  {
-    title: "This is one result title",
-    description:
-      "You can customize the link URL that will be shared to Facebook and Twitter. The text copied when the 'Copy Link' (or 🔗) button is pressed can also be customized. Click the 'Retake' button to trigger the onRestart function.",
-    resultImageSrc: FirstResultCatImage,
-    imageAttribution: "Photo by Pixabay from Pexels",
-    resultID: 0,
-  },
-  {
-    title: "This is another result title",
-    description:
-      "You can customize the link URL that will be shared to Facebook and Twitter. The text copied when the 'Copy Link' (or 🔗) button is pressed can also be customized. Click the 'Retake' button to trigger the onRestart function.",
-    resultImageSrc: SecondResultCatImage,
-    imageAttribution: "Photo by Tranmautritam from Pexels",
-    resultID: 1,
-  },
-  {
-    title: "Here's yet another result title",
-    description:
-      "You can customize the link URL that will be shared to Facebook and Twitter. The text copied when the 'Copy Link' (or 🔗) button is pressed can also be customized. Click the 'Retake' button to trigger the onRestart function.",
-    resultImageSrc: ThirdResultCatImage,
-    imageAttribution: "Photo by Pixabay from Pexels",
-    resultID: 2,
-  },
-];
-
 const App = () => {
-  const [fontsLoaded, changeFontsLoaded] = useState(true);
+  const [fontsLoaded, changeFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    changeFontsLoaded(false);
+  }, [changeFontsLoaded]);
 
   useEffect(() => {
     document.fonts.ready.then(() => {
       changeFontsLoaded(true);
     });
-  }, []);
+  }, [changeFontsLoaded]);
+
+  const renderCustomRocketGradient = () => {
+    return (
+      <>
+        <svg width="0" height="0">
+          <linearGradient
+            id="rocket-gradient"
+            x1="100%"
+            y1="100%"
+            x2="0%"
+            y2="0%"
+          >
+            <stop stopColor="rgb(0,80,58)" offset="0%" />
+            <stop stopColor="rgb(2,207,158)" offset="100%" />
+          </linearGradient>
+        </svg>
+        <IoRocketSharp
+          style={{
+            fill: "url(#rocket-gradient)",
+          }}
+          size={28}
+        />
+      </>
+    );
+  };
 
   if (fontsLoaded) {
     return (
@@ -347,7 +138,7 @@ const App = () => {
           twitterShareLink={"google.com"}
           copyShareButton={true}
           copyShareLink={"This text was copied using the copyShareLink prop."}
-          questions={questions}
+          questions={[
             {
               question: "Here's a default question",
               answers: [
@@ -594,7 +385,32 @@ const App = () => {
               ],
             },
           ]}
-          results={results}
+          results={[
+            {
+              title: "This is one result title",
+              description:
+                "You can customize the link URL that will be shared to Facebook and Twitter. The text copied when the 'Copy Link' (or 🔗) button is pressed can also be customized. Click the 'Retake' button to trigger the onRestart function.",
+              resultImageSrc: FirstResultCatImage,
+              imageAttribution: "Photo by Pixabay from Pexels",
+              resultID: 0,
+            },
+            {
+              title: "This is another result title",
+              description:
+                "You can customize the link URL that will be shared to Facebook and Twitter. The text copied when the 'Copy Link' (or 🔗) button is pressed can also be customized. Click the 'Retake' button to trigger the onRestart function.",
+              resultImageSrc: SecondResultCatImage,
+              imageAttribution: "Photo by Tranmautritam from Pexels",
+              resultID: 1,
+            },
+            {
+              title: "Here's yet another result title",
+              description:
+                "You can customize the link URL that will be shared to Facebook and Twitter. The text copied when the 'Copy Link' (or 🔗) button is pressed can also be customized. Click the 'Retake' button to trigger the onRestart function.",
+              resultImageSrc: ThirdResultCatImage,
+              imageAttribution: "Photo by Pixabay from Pexels",
+              resultID: 2,
+            },
+          ]}
         />
       </>
     );
