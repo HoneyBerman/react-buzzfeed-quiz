@@ -188,7 +188,7 @@ const questions = [
       },
       {
         answer: "Click for answer function",
-        onAnswerSelection: (questionIndex, answerIndex, resultID) =>
+        onAnswerSelection: (questionIndex: number, answerIndex: number, resultID: number) =>
           alert(
             `This alert is caused by an answer selection!\n\nThe onAnswerSelection prop takes an optional callback function with the question's index, selected answer index, and associated result ID as parameters.\n\nCheck out the console to see these parameters in action!\n\n*** Keep in mind that the onAnswerSelection prop on specific answers supersedes ReactBuzzFeedQuiz's general onAnswerSelection prop, so the parameters for this particular question selection won't show up in the console but here instead:\n\n{questionIndex: ${questionIndex}, answerIndex: ${answerIndex}, resultID: ${resultID}}`
           ),
